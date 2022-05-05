@@ -19,19 +19,25 @@ public class PostController {
     PostServies postServies;
 
     @PostMapping("/post")
-    public ResponseEntity<Post> createComment(@RequestBody Post post) {
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
         postServies.save(post);
         return ResponseEntity.status(HttpStatus.CREATED.value()).body(post);
     }
 
+    @PutMapping("/post")
+    public ResponseEntity<Post> UpdatePost(@RequestBody Post post) {
+        postServies.save(post);
+        return ResponseEntity.status(HttpStatus.OK.value()).body(post);
+    }
+
     @GetMapping("/post/{id}")
-    public ResponseEntity<Post> findComment(@PathVariable int id) {
+    public ResponseEntity<Post> findPost(@PathVariable int id) {
         Post post = postServies.findById(id);
         return ResponseEntity.status(HttpStatus.FOUND.value()).body(post);
     }
 
     @GetMapping("/posts")
-    public ResponseEntity<List<Post>> findAllComments() {
+    public ResponseEntity<List<Post>> findAllPost() {
         List<Post> posts = postServies.findAll();
         return ResponseEntity.status(HttpStatus.FOUND.value()).body(posts);
     }

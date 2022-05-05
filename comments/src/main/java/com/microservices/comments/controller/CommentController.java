@@ -23,6 +23,12 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED.value()).body(comment);
     }
 
+    @PutMapping ("/comment}")
+    public ResponseEntity<Comment> update(@RequestBody Comment comment) {
+        commentServies.save(comment);
+        return ResponseEntity.status(HttpStatus.OK.value()).body(comment);
+    }
+
     @GetMapping("/comment/{id}")
     public ResponseEntity<Comment> findComment(@PathVariable int id) {
         Comment comment = commentServies.findById(id);
